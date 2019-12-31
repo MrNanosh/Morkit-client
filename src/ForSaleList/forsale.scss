@@ -1,0 +1,8 @@
+.forsale {
+  background: gray;
+  &__item {
+    background: rgb(68, 67, 67);
+    color: cornsilk;
+    list-style-type: none;
+  }
+}
