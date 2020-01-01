@@ -10,11 +10,13 @@ import ApiContext from '../ApiContext';
 import config from '../config';
 import './App.css';
 import ForSaleList from '../ForSaleList/ForSaleList';
+import InventoryMain from '../InventoryMain/InventoryMain';
+import MessageMain from '../MessageMain/MessageMain';
 // import ErrorBoundary from '../ErrorBoundary';
 
 class App extends Component {
   state = {
-    inventory: [],
+    inventory: { items: [], lists: [] },
     messages: [],
     forsale: []
   };
@@ -147,12 +149,25 @@ class App extends Component {
   renderMainRoutes() {
     return (
       <>
-        {['/'].map(path => (
+        {[
+          {
+            endpoint: '/',
+            mainView: ForSaleList
+          },
+          {
+            endpoint: '/inventory',
+            mainView: InventoryMain
+          },
+          {
+            endpoint: '/messages',
+            mainView: MessageMain
+          }
+        ].map(path => (
           <Route
             exact
-            key={path}
-            path={path}
-            component={ForSaleList}
+            key={path.endpoint}
+            path={path.endpoint}
+            component={path.mainView}
           />
         ))}
       </>

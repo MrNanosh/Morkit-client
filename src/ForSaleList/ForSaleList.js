@@ -14,29 +14,29 @@ function ForSaleList() {
 
   return (
     <div className="forsale">
-      {/* {getItems(context.forsale)} */}
+      {getItems(context.forsale)}
       {/* <ForsaleItem
         item={context[0]}
       ></ForsaleItem> */}
       {/* {console.log('Hiya')} */}
-      {context.forsale.map(item => {
+      {/* {context.forsale.map(item => {
         return (
           <ForsaleItem
             item={item}
           ></ForsaleItem>
         );
-      })}
+      })} */}
     </div>
   );
 }
 export default ForSaleList;
 
-// function getItems(itemList) {
-//   itemList.map(item => {
-//     return (
-//       <ForsaleItem
-//         item={item}
-//       ></ForsaleItem>
-//     );
-//   });
-// }
+function getItems(itemList) {
+  return itemList.map(item => {
+    return (
+      <ForsaleItem
+        item={item}
+      ></ForsaleItem>
+    );
+  });
+}
