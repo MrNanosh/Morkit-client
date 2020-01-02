@@ -17,7 +17,16 @@ function ForsaleItem(props) {
       </div>
       <div className="forsale__abvdesc">
         {item_body}
+        <button className="forsale__seeMore">
+          more...
+        </button>
       </div>
+      <button className="forsale__checkToggle">
+        {'available?'}
+      </button>
+      <button className="forsale__checkToggle">
+        {'Want!'}
+      </button>
     </div>
   );
 }
