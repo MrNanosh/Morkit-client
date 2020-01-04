@@ -35,6 +35,7 @@ function getItems(itemList) {
   return itemList.map(item => {
     return (
       <ForsaleItem
+        key={item.id}
         item={item}
       ></ForsaleItem>
     );

@@ -20,6 +20,7 @@ function ForsaleItem(props) {
         <button className="forsale__seeMore">
           more...
         </button>
+        {/* maybe make it so that there isn't as more... button when there is a small amount of text */}
       </div>
       <button className="forsale__checkToggle">
         {'available?'}

@@ -6,9 +6,11 @@ function InventoryItem(props) {
     item_name,
     item_body,
     item_owner,
+    owner_name,
     item_is,
     item_list
   } = props.item;
+
   return (
     <div
       className="InventoryItem InventoryList__item"

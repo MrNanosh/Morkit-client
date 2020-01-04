@@ -31,13 +31,17 @@ class App extends Component {
       ),
       fetch(
         `${config.API_ENDPOINT}/api/forsale`
+      ),
+      fetch(
+        `${config.API_ENDPOINT}/api/list`
       )
     ])
       .then(
         ([
           messageRes,
           inventoryRes,
-          forsaleRes
+          forsaleRes,
+          listRes
         ]) => {
           if (!messageRes.ok)
             return messageRes
@@ -57,11 +61,18 @@ class App extends Component {
               .then(e =>
                 Promise.reject(e)
               );
+          if (!listRes.ok)
+            return listRes
+              .json()
+              .then(e =>
+                Promise.reject(e)
+              );
 
           return Promise.all([
             messageRes.json(),
             inventoryRes.json(),
-            forsaleRes.json()
+            forsaleRes.json(),
+            listRes.json()
           ]);
         }
       )
@@ -69,11 +80,16 @@ class App extends Component {
         ([
           messages,
           inventory,
-          forsale
+          forsale,
+          list
         ]) => {
+          console.log(forsale);
           this.setState({
             messages,
-            inventory,
+            inventory: {
+              items: inventory,
+              lists: list
+            },
             forsale
           });
         }
@@ -84,6 +100,7 @@ class App extends Component {
   }
 
   handleAddItem = item => {
+    //TODO:needs auth
     this.setState({
       folders: [
         ...this.state.inventory,
@@ -95,7 +112,7 @@ class App extends Component {
   handleAddMessage = message => {
     this.setState({
       notes: [
-        ...this.state.notes,
+        ...this.state.messages,
         message
       ]
     });
@@ -109,10 +126,9 @@ class App extends Component {
     this.setState({
       notes: this.state.inventory.filter(
         item => item.id !== itemId
-      )
     });
   };
-
+//TODO: nav routes
   // renderNavRoutes() {
   //   return (
   //     <>
