@@ -103,8 +103,18 @@ class App extends Component {
     //TODO:needs auth
     this.setState({
       folders: [
-        ...this.state.inventory,
+        ...this.state.inventory.items,
         item
+      ]
+    });
+  };
+
+  handleAddList = list => {
+    //TODO:needs auth
+    this.setState({
+      folders: [
+        ...this.state.inventory.lists,
+        list
       ]
     });
   };
@@ -120,15 +130,63 @@ class App extends Component {
 
   handleDeleteItem = itemId => {
     console.log(
-      this.state.inventory[0].id,
+      this.state.inventory.items[0].id,
       itemId
     );
     this.setState({
-      notes: this.state.inventory.filter(
+      notes: this.state.inventory.items.filter(
         item => item.id !== itemId
+      )
     });
   };
-//TODO: nav routes
+
+  handleDeleteList = listId => {
+    console.log(
+      this.state.inventory.lists[0].id,
+      listId
+    );
+    this.setState({
+      notes: this.state.inventory.lists.filter(
+        list => list.id !== listId
+      )
+    });
+  };
+
+  handleDeleteMessage = messageId => {
+    console.log(
+      this.state.messages[0].id,
+      messageId
+    );
+    this.setState({
+      notes: this.state.messages.filter(
+        message =>
+          message.id !== messageId
+      )
+    });
+  };
+
+  handleUpdateItem = (
+    itemId,
+    fieldsToUpdate
+  ) => {
+    const itemIndex = this.state.inventory.items.findIndex(
+      item => item.id !== itemId
+    );
+    let updatedItem = this.state
+      .inventory.items[itemIndex];
+    updatedItem = {
+      ...updatedItem,
+      ...fieldsToUpdate
+    };
+    this.setState({
+      inventory: {
+        ...this.state.lists,
+        items: updatedItem
+      }
+    });
+  };
+
+  //TODO: nav routes
   // renderNavRoutes() {
   //   return (
   //     <>
