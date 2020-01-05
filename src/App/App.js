@@ -178,10 +178,17 @@ class App extends Component {
       ...updatedItem,
       ...fieldsToUpdate
     };
+    let listOfItems = this.state
+      .inventory.items;
+    listOfItems.splice(
+      itemIndex,
+      1,
+      updatedItem
+    );
     this.setState({
       inventory: {
-        ...this.state.lists,
-        items: updatedItem
+        ...this.state.inventory,
+        items: listOfItems
       }
     });
   };
@@ -252,7 +259,8 @@ class App extends Component {
     const value = {
       inventory: this.state.inventory,
       messages: this.state.messages,
-      forsale: this.state.forsale
+      forsale: this.state.forsale,
+      updateItem: this.handleUpdateItem
     };
     return (
       <ApiContext.Provider

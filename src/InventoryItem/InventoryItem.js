@@ -1,6 +1,7 @@
 import React, {
   Component
 } from 'react';
+import ApiContext from '../ApiContext';
 
 // function InventoryItem(props) {
 //   const {
@@ -38,8 +39,16 @@ import React, {
 class InventoryItem extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { ...this.props.item };
   }
+  static contextType = ApiContext;
+
+  handleChange = (e, field) => {
+    this.setState({
+      ...this.state,
+      [field]: e.target.value
+    });
+  };
 
   render() {
     const {
@@ -50,23 +59,59 @@ class InventoryItem extends Component {
       owner_name,
       item_is,
       item_list
-    } = this.props.item;
+    } = this.state;
     return (
       <form className="InventoryItem InventoryList__item">
         <input
           className="InventoryItem__name"
           value={item_name}
           type="text"
+          onChange={e =>
+            this.handleChange(
+              e,
+              'item_name'
+            )
+          }
+          onBlur={e =>
+            this.context.updateItem(
+              id,
+              e.target.value
+            )
+          }
         />
-        <input
+        <textarea
           className="InventoryItem__body"
           value={item_body}
           type="text"
+          onChange={e =>
+            this.handleChange(
+              e,
+              'item_body'
+            )
+          }
+          onBlur={e =>
+            this.context.updateItem(
+              id,
+              e.target.value
+            )
+          }
         />
         <input
           className="InventoryItem__is"
           value={item_is}
           type="text"
+          onChange={e =>
+            this.handleChange(
+              e,
+              'item_is'
+            )
+          }
+          onBlur={e =>
+            this.context.updateItem(
+              id,
+              e.target.value
+            )
+          }
         />
       </form>
     );
