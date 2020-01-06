@@ -4,5 +4,8 @@ export default React.createContext({
   messages: [],
   inventory: { items: [], lists: [] },
   forsale: [],
-  updateItem: () => {}
+  updateList: () => {},
+  updateItem: () => {},
+  addItem: () => {},
+  addList: () => {}
 });

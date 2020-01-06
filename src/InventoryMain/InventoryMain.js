@@ -12,11 +12,29 @@ class InventoryMain extends Component {
       return (
         <InventoryList
           key={list.id}
-          listNumber={list.id}
-          listName={list.list_name}
+          list_number={list.id}
+          list_name={list.list_name}
         ></InventoryList>
       );
     });
+  };
+
+  newInventoryList = () => {
+    //TODO: a fetch request for post
+    let newList = {
+      list_name:
+        'please name your List',
+      id: 2525 //delete this later and get the info back from the fetch request
+    };
+    this.context.addList(newList); //needs to be asynchronous with fetchfolders
+
+    console.log(this.context);
+    return (
+      <InventoryList
+        item={newList}
+        key={newList.id}
+      />
+    );
   };
 
   render() {
@@ -25,6 +43,13 @@ class InventoryMain extends Component {
         {this.getLists(
           this.context.inventory.lists
         )}
+        <button
+          onClick={
+            this.newInventoryList
+          }
+        >
+          + New Inventory List +
+        </button>
       </div>
     );
   }

@@ -102,20 +102,29 @@ class App extends Component {
   handleAddItem = item => {
     //TODO:needs auth
     this.setState({
-      folders: [
-        ...this.state.inventory.items,
-        item
-      ]
+      inventory: {
+        items: [
+          ...this.state.inventory.items,
+          item
+        ],
+        lists: this.state.inventory
+          .lists
+      }
     });
   };
 
   handleAddList = list => {
     //TODO:needs auth
     this.setState({
-      folders: [
-        ...this.state.inventory.lists,
-        list
-      ]
+      inventory: {
+        items: this.state.inventory
+          .items,
+
+        lists: [
+          ...this.state.inventory.lists,
+          list
+        ]
+      }
     });
   };
 
@@ -193,6 +202,34 @@ class App extends Component {
     });
   };
 
+  handleUpdateList = (
+    listId,
+    fieldsToUpdate
+  ) => {
+    const listIndex = this.state.inventory.lists.findIndex(
+      list => list.id !== listId
+    );
+    let updatedList = this.state
+      .inventory.lists[listIndex];
+    updatedList = {
+      ...updatedList,
+      ...fieldsToUpdate
+    };
+    let listOfLists = this.state
+      .inventory.lists;
+    listOfLists.splice(
+      listIndex,
+      1,
+      updatedList
+    );
+    this.setState({
+      inventory: {
+        ...this.state.inventory,
+        lists: listOfLists
+      }
+    });
+  };
+
   //TODO: nav routes
   // renderNavRoutes() {
   //   return (
@@ -260,7 +297,10 @@ class App extends Component {
       inventory: this.state.inventory,
       messages: this.state.messages,
       forsale: this.state.forsale,
-      updateItem: this.handleUpdateItem
+      updateItem: this.handleUpdateItem,
+      updateList: this.handleUpdateList,
+      addItem: this.handleAddItem,
+      addList: this.handleAddList
     };
     return (
       <ApiContext.Provider

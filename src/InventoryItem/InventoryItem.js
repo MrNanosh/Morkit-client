@@ -43,10 +43,10 @@ class InventoryItem extends Component {
   }
   static contextType = ApiContext;
 
-  handleChange = (e, field) => {
+  handleChange = e => {
     this.setState({
       ...this.state,
-      [field]: e.target.value
+      [e.target.name]: e.target.value
     });
   };
 
@@ -64,14 +64,10 @@ class InventoryItem extends Component {
       <form className="InventoryItem InventoryList__item">
         <input
           className="InventoryItem__name"
+          name="item_name"
           value={item_name}
           type="text"
-          onChange={e =>
-            this.handleChange(
-              e,
-              'item_name'
-            )
-          }
+          onChange={this.handleChange}
           onBlur={e =>
             this.context.updateItem(
               id,
@@ -82,13 +78,9 @@ class InventoryItem extends Component {
         <textarea
           className="InventoryItem__body"
           value={item_body}
+          name="item_body"
           type="text"
-          onChange={e =>
-            this.handleChange(
-              e,
-              'item_body'
-            )
-          }
+          onChange={this.handleChange}
           onBlur={e =>
             this.context.updateItem(
               id,
@@ -99,13 +91,9 @@ class InventoryItem extends Component {
         <input
           className="InventoryItem__is"
           value={item_is}
+          name="item_is"
           type="text"
-          onChange={e =>
-            this.handleChange(
-              e,
-              'item_is'
-            )
-          }
+          onChange={this.handleChange}
           onBlur={e =>
             this.context.updateItem(
               id,
