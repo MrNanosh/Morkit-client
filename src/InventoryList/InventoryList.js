@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import ApiContext from '../ApiContext';
 import InventoryItem from '../InventoryItem/InventoryItem';
+import config from '../config';
 class InventoryList extends Component {
   constructor(props) {
     super(props);
@@ -29,11 +30,88 @@ class InventoryList extends Component {
       });
   };
 
+  //TODO: handleDeleteList
+  updateListFields = listFields => {
+    const listBody = {
+      [listFields.name]:
+        listFields.value
+    };
+    const options = {
+      method: 'PATCH',
+      headers: {
+        'content-type':
+          'application/json'
+      },
+      body: JSON.stringify(listBody)
+    };
+    fetch(
+      `${config.API_ENDPOINT}/api/list/${this.state.list_number}`,
+      options
+    )
+      .then(rsp => {
+        if (!rsp.ok) {
+          throw new Error(rsp);
+        } else {
+          return rsp;
+        }
+      })
+      .then(rsp => {
+        this.context.updateList(
+          this.state.list_number,
+          listFields
+        );
+        this.setState({
+          ...this.state,
+          ...listBody
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   handleChange = e => {
     this.setState({
       ...this.state,
       [e.target.name]: e.target.value
     });
+  };
+
+  deleteList = e => {
+    const list_id = e.target.id;
+
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'content-type':
+          'application/json'
+      }
+    };
+    fetch(
+      `${config.API_ENDPOINT}/api/list/${list_id}`,
+      options
+    )
+      .then(rsp => {
+        if (!rsp.ok) {
+          throw new Error(rsp);
+        } else {
+          return rsp;
+        }
+      })
+      .then(rsp => {
+        console.log(
+          `deleted list ${list_id}`
+        );
+        this.context.deleteList(
+          list_id
+        );
+        this.props.history.push(
+          '/inventory'
+        );
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   newInventoryItem = () => {
@@ -42,17 +120,46 @@ class InventoryList extends Component {
       item_name:
         'please name your item',
       item_list: this.props.list_number,
-      id: 2525 //delete this later and get the info back from the fetch request
+      item_is: 'unavailable'
     };
-    this.context.addItem(newItem); //needs to be asynchronous with fetchfolders
+    const options = {
+      method: 'POST',
+      headers: {
+        'content-type':
+          'application/json'
+      },
+      body: JSON.stringify(newItem)
+    };
 
-    console.log(this.context);
-    return (
-      <InventoryItem
-        item={newItem}
-        key={newItem.id}
-      />
-    );
+    fetch(
+      `${config.API_ENDPOINT}/api/inventory`,
+      options
+    )
+      .then(rsp => {
+        if (!rsp.ok) {
+          throw new Error(
+            'something went wrong'
+          );
+        } else {
+          return rsp.json();
+        }
+      })
+      .then(item => {
+        this.context.addItem(item); //needs to be asynchronous with fetchfolders
+        this.props.history.push(
+          '/inventory'
+        );
+        console.log(item);
+      })
+      .catch(e => console.log(e));
+
+    // console.log(this.context);
+    // return (
+    //   <InventoryItem
+    //     item={newItem}
+    //     key={newItem.id}
+    //   />
+    // );
   };
 
   render() {
@@ -77,13 +184,21 @@ class InventoryList extends Component {
                 this.handleChange
               }
               onBlur={e =>
-                this.context.updateList(
-                  list_name,
-                  e.target.value
+                this.updateListFields(
+                  e.target
                 )
               }
             />
           </form>
+          <button
+            id={list_number}
+            className="InventoryList__delete"
+            onClick={e =>
+              this.deleteList(e)
+            }
+          >
+            delete list
+          </button>
         </div>
 
         {this.getInventoryItems(

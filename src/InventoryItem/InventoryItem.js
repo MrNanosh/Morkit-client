@@ -2,6 +2,7 @@ import React, {
   Component
 } from 'react';
 import ApiContext from '../ApiContext';
+import config from '../config';
 
 // function InventoryItem(props) {
 //   const {
@@ -40,6 +41,7 @@ class InventoryItem extends Component {
   constructor(props) {
     super(props);
     this.state = { ...this.props.item };
+    //TODO: needs something that is set when a fetch doesn't return to refresh the item
   }
   static contextType = ApiContext;
 
@@ -48,6 +50,45 @@ class InventoryItem extends Component {
       ...this.state,
       [e.target.name]: e.target.value
     });
+  };
+  //TODO: handleDeleteItem
+  updateItemFields = itemFields => {
+    const itemBody = {
+      [itemFields.name]:
+        itemFields.value
+    };
+    const options = {
+      method: 'PATCH',
+      headers: {
+        'content-type':
+          'application/json'
+      },
+      body: JSON.stringify(itemBody)
+    };
+    fetch(
+      `${config.API_ENDPOINT}/api/inventory/${this.state.id}`,
+      options
+    )
+      .then(rsp => {
+        if (!rsp.ok) {
+          throw new Error(rsp);
+        } else {
+          return rsp;
+        }
+      })
+      .then(rsp => {
+        this.context.updateItem(
+          this.state.id,
+          itemFields
+        );
+        this.setState({
+          ...this.state,
+          ...itemBody
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -68,12 +109,11 @@ class InventoryItem extends Component {
           value={item_name}
           type="text"
           onChange={this.handleChange}
-          onBlur={e =>
-            this.context.updateItem(
-              id,
-              e.target.value
-            )
-          }
+          onBlur={e => {
+            this.updateItemFields(
+              e.target
+            );
+          }}
         />
         <textarea
           className="InventoryItem__body"
@@ -81,12 +121,11 @@ class InventoryItem extends Component {
           name="item_body"
           type="text"
           onChange={this.handleChange}
-          onBlur={e =>
-            this.context.updateItem(
-              id,
-              e.target.value
-            )
-          }
+          onBlur={e => {
+            this.updateItemFields(
+              e.target
+            );
+          }}
         />
         <input
           className="InventoryItem__is"
@@ -94,12 +133,11 @@ class InventoryItem extends Component {
           name="item_is"
           type="text"
           onChange={this.handleChange}
-          onBlur={e =>
-            this.context.updateItem(
-              id,
-              e.target.value
-            )
-          }
+          onBlur={e => {
+            this.updateItemFields(
+              e.target
+            );
+          }}
         />
       </form>
     );

@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import ApiContext from '../ApiContext';
 import InventoryList from '../InventoryList/InventoryList';
+import config from '../config';
 
 class InventoryMain extends Component {
   static contextType = ApiContext;
@@ -22,19 +23,50 @@ class InventoryMain extends Component {
   newInventoryList = () => {
     //TODO: a fetch request for post
     let newList = {
-      list_name:
-        'please name your List',
-      id: 2525 //delete this later and get the info back from the fetch request
+      list_name: 'please name your List'
     };
-    this.context.addList(newList); //needs to be asynchronous with fetchfolders
 
-    console.log(this.context);
-    return (
-      <InventoryList
-        item={newList}
-        key={newList.id}
-      />
-    );
+    const options = {
+      method: 'POST',
+      headers: {
+        'content-type':
+          'application/json'
+      },
+      body: JSON.stringify(newList)
+    };
+
+    fetch(
+      `${config.API_ENDPOINT}/api/list`,
+      options
+    )
+      .then(rsp => {
+        if (!rsp.ok) {
+          throw new Error(
+            'something went wrong'
+          );
+        } else {
+          return rsp.json();
+        }
+      })
+      .then(list => {
+        this.context.addList(list); //needs to be asynchronous with fetchfolders
+        this.props.history.push(
+          '/inventory'
+        );
+        console.log(list);
+        // return (
+        //   <InventoryList
+        //     list_name={json.list_name}
+        //     list_number={json.id}
+        //     key={json.id}
+        //   />
+        // );
+      })
+      .catch(error =>
+        console.log(
+          'something went wrong'
+        )
+      );
   };
 
   render() {

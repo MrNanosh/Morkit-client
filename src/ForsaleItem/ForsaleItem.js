@@ -1,4 +1,5 @@
 import React from 'react';
+import giveAModalTo from '../HOCS/hasModal';
 
 function ForsaleItem(props) {
   const {
@@ -32,4 +33,7 @@ function ForsaleItem(props) {
   );
 }
 
-export default ForsaleItem;
+const ForsaleItemWithModal = giveAModalTo(
+  ForsaleItem
+);
+export default ForsaleItemWithModal;

@@ -179,14 +179,19 @@ class App extends Component {
     fieldsToUpdate
   ) => {
     const itemIndex = this.state.inventory.items.findIndex(
-      item => item.id !== itemId
+      item => item.id === itemId
     );
     let updatedItem = this.state
       .inventory.items[itemIndex];
+    let field = {
+      [fieldsToUpdate.name]:
+        fieldsToUpdate.value
+    };
     updatedItem = {
       ...updatedItem,
-      ...fieldsToUpdate
+      ...field
     };
+    console.log(updatedItem);
     let listOfItems = this.state
       .inventory.items;
     listOfItems.splice(
@@ -207,13 +212,17 @@ class App extends Component {
     fieldsToUpdate
   ) => {
     const listIndex = this.state.inventory.lists.findIndex(
-      list => list.id !== listId
+      list => list.id === listId
     );
     let updatedList = this.state
       .inventory.lists[listIndex];
+    let field = {
+      [fieldsToUpdate.name]:
+        fieldsToUpdate.value
+    };
     updatedList = {
       ...updatedList,
-      ...fieldsToUpdate
+      ...field
     };
     let listOfLists = this.state
       .inventory.lists;
@@ -300,7 +309,9 @@ class App extends Component {
       updateItem: this.handleUpdateItem,
       updateList: this.handleUpdateList,
       addItem: this.handleAddItem,
-      addList: this.handleAddList
+      addList: this.handleAddList,
+      deleteItem: this.handleDeleteItem,
+      deleteList: this.handleDeleteList
     };
     return (
       <ApiContext.Provider

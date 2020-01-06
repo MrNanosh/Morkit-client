@@ -7,5 +7,7 @@ export default React.createContext({
   updateList: () => {},
   updateItem: () => {},
   addItem: () => {},
-  addList: () => {}
+  addList: () => {},
+  deleteItem: () => {},
+  deleteList: () => {}
 });

@@ -4,6 +4,8 @@ import React, {
 import ApiContext from '../ApiContext';
 import './forsale.scss';
 import ForsaleItem from '../ForsaleItem/ForsaleItem';
+import giveAModalTo from '../HOCS/hasModal';
+import ForsaleItemWithModal from '../ForsaleItem/ForsaleItem';
 
 function ForSaleList() {
   const context = useContext(
@@ -11,21 +13,9 @@ function ForSaleList() {
   );
 
   console.log(context);
-
   return (
     <div className="forsale">
       {getItems(context.forsale)}
-      {/* <ForsaleItem
-        item={context[0]}
-      ></ForsaleItem> */}
-      {/* {console.log('Hiya')} */}
-      {/* {context.forsale.map(item => {
-        return (
-          <ForsaleItem
-            item={item}
-          ></ForsaleItem>
-        );
-      })} */}
     </div>
   );
 }
@@ -34,10 +24,10 @@ export default ForSaleList;
 function getItems(itemList) {
   return itemList.map(item => {
     return (
-      <ForsaleItem
+      <ForsaleItemWithModal
         key={item.id}
         item={item}
-      ></ForsaleItem>
+      ></ForsaleItemWithModal>
     );
   });
 }
