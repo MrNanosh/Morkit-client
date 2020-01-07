@@ -83,12 +83,21 @@ class App extends Component {
           forsale,
           list
         ]) => {
-          console.log(forsale);
+          forsale.sort(
+            (a, b) => a.id - b.id
+          );
+          messages.sort(
+            (a, b) => a.id - b.id
+          );
           this.setState({
             messages,
             inventory: {
-              items: inventory,
-              lists: list
+              items: inventory.sort(
+                (a, b) => a.id - b.id
+              ),
+              lists: list.sort(
+                (a, b) => a.id - b.id
+              )
             },
             forsale
           });
@@ -138,26 +147,27 @@ class App extends Component {
   };
 
   handleDeleteItem = itemId => {
-    console.log(
-      this.state.inventory.items[0].id,
-      itemId
-    );
     this.setState({
-      notes: this.state.inventory.items.filter(
-        item => item.id !== itemId
-      )
+      inventory: {
+        ...this.state.inventory,
+        items: this.state.inventory.items.filter(
+          item =>
+            item.id !== Number(itemId)
+        )
+      }
     });
+    console.log(this.state);
   };
 
   handleDeleteList = listId => {
-    console.log(
-      this.state.inventory.lists[0].id,
-      listId
-    );
     this.setState({
-      notes: this.state.inventory.lists.filter(
-        list => list.id !== listId
-      )
+      inventory: {
+        ...this.state.inventory,
+        lists: this.state.inventory.lists.filter(
+          list =>
+            list.id !== Number(listId)
+        )
+      }
     });
   };
 
@@ -179,7 +189,7 @@ class App extends Component {
     fieldsToUpdate
   ) => {
     const itemIndex = this.state.inventory.items.findIndex(
-      item => item.id === itemId
+      item => item.id === Number(itemId)
     );
     let updatedItem = this.state
       .inventory.items[itemIndex];
@@ -212,7 +222,7 @@ class App extends Component {
     fieldsToUpdate
   ) => {
     const listIndex = this.state.inventory.lists.findIndex(
-      list => list.id === listId
+      list => list.id === Number(listId)
     );
     let updatedList = this.state
       .inventory.lists[listIndex];

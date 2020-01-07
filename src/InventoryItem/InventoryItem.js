@@ -51,7 +51,42 @@ class InventoryItem extends Component {
       [e.target.name]: e.target.value
     });
   };
-  //TODO: handleDeleteItem
+
+  deleteItem = e => {
+    const item_id = e.target.id;
+
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'content-type':
+          'application/json'
+      }
+    };
+    fetch(
+      `${config.API_ENDPOINT}/api/inventory/${item_id}`,
+      options
+    )
+      .then(rsp => {
+        if (!rsp.ok) {
+          throw new Error(rsp);
+        } else {
+          return rsp;
+        }
+      })
+      .then(rsp => {
+        this.context.deleteItem(
+          item_id
+        );
+        console.log(
+          `deleted item ${item_id}`,
+          this.context.inventory.items
+        );
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   updateItemFields = itemFields => {
     const itemBody = {
       [itemFields.name]:
@@ -81,10 +116,6 @@ class InventoryItem extends Component {
           this.state.id,
           itemFields
         );
-        this.setState({
-          ...this.state,
-          ...itemBody
-        });
       })
       .catch(error => {
         console.log(error);
@@ -139,6 +170,14 @@ class InventoryItem extends Component {
             );
           }}
         />
+        <button
+          onClick={e =>
+            this.deleteItem(e)
+          }
+          id={id}
+        >
+          delete item
+        </button>
       </form>
     );
   }

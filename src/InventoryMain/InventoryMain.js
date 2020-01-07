@@ -15,6 +15,9 @@ class InventoryMain extends Component {
           key={list.id}
           list_number={list.id}
           list_name={list.list_name}
+          // show_delete={this.setState({
+          //   ...this.state
+          // })}
         ></InventoryList>
       );
     });

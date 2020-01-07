@@ -30,7 +30,6 @@ class InventoryList extends Component {
       });
   };
 
-  //TODO: handleDeleteList
   updateListFields = listFields => {
     const listBody = {
       [listFields.name]:
@@ -60,10 +59,6 @@ class InventoryList extends Component {
           this.state.list_number,
           listFields
         );
-        this.setState({
-          ...this.state,
-          ...listBody
-        });
       })
       .catch(error => {
         console.log(error);
@@ -99,14 +94,8 @@ class InventoryList extends Component {
         }
       })
       .then(rsp => {
-        console.log(
-          `deleted list ${list_id}`
-        );
         this.context.deleteList(
           list_id
-        );
-        this.props.history.push(
-          '/inventory'
         );
       })
       .catch(error => {
