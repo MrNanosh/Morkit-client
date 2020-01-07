@@ -4,6 +4,7 @@ import React, {
 import ApiContext from '../ApiContext';
 import InventoryItem from '../InventoryItem/InventoryItem';
 import config from '../config';
+import './InventoryList.scss';
 class InventoryList extends Component {
   constructor(props) {
     super(props);
@@ -163,9 +164,14 @@ class InventoryList extends Component {
     return (
       <div className="InventoryList">
         <div className="InventoryList__name">
-          <form className="InventoryList InventoryList__nameform">
+          <form
+            className="InventoryList__nameform"
+            onSubmit={e => {
+              e.preventDefault();
+            }}
+          >
             <input
-              className="InventoryList__name"
+              className="InventoryList__nameInput"
               name="list_name"
               value={list_name}
               type="text"
@@ -180,6 +186,7 @@ class InventoryList extends Component {
             />
           </form>
           <button
+            type="button"
             id={list_number}
             className="InventoryList__delete"
             onClick={e =>
@@ -195,6 +202,8 @@ class InventoryList extends Component {
           list_number
         )}
         <button
+          type="button"
+          className="InventoryList__newItemButton"
           onClick={
             this.newInventoryItem
           }

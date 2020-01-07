@@ -1,0 +1,9 @@
+* {
+  box-sizing: border-box;
+}
+.InventoryMain {
+  display: flex;
+  flex-direction: row;
+  overflow-y: scroll;
+  scroll-snap-type: x mandatory;
+}

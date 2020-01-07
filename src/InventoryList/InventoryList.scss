@@ -1,0 +1,22 @@
+.InventoryList {
+  display: flex;
+  flex-direction: column;
+  min-width: 274px;
+  border-radius: 4px;
+  padding-left: 12px;
+  scroll-snap-align: start;
+  &__name {
+    background: darkgray;
+  }
+  &__nameform {
+  }
+  &__nameInput {
+    background: darkgray;
+    color: cornsilk;
+    border-radius: 8px;
+  }
+  &__delete {
+  }
+  &__newItemButton {
+  }
+}

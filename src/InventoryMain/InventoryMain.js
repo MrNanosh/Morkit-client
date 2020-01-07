@@ -4,6 +4,7 @@ import React, {
 import ApiContext from '../ApiContext';
 import InventoryList from '../InventoryList/InventoryList';
 import config from '../config';
+import './InventoryMain.scss';
 
 class InventoryMain extends Component {
   static contextType = ApiContext;

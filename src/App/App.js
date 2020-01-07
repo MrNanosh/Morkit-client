@@ -84,10 +84,10 @@ class App extends Component {
           list
         ]) => {
           forsale.sort(
-            (a, b) => a.id - b.id
+            (a, b) => b.id - a.id
           );
           messages.sort(
-            (a, b) => a.id - b.id
+            (a, b) => b.id - a.id
           );
           this.setState({
             messages,

@@ -1,8 +1,77 @@
 .forsale {
   background: gray;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  margin-right: 20%;
+
   &__item {
+    border-radius: inherit;
+    min-width: 274px;
+    // width: 80%;
     background: rgb(68, 67, 67);
     color: cornsilk;
     list-style-type: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 12px;
+    display: flex;
+  }
+
+  &__actionsAndName {
+    border-radius: inherit;
+  }
+
+  &__name {
+    border-radius: inherit;
+    display: block;
+    color: rgb(168, 148, 31);
+    background: black;
+    width: 220px;
+    height: 60px;
+    margin: 15px;
+  }
+
+  &__about {
+    position: relative;
+    background-color: cyan;
+    border-radius: inherit;
+    height: 100%;
+  }
+
+  &__owner {
+    border-radius: inherit;
+    color: orangered;
+    background: maroon;
+    width: 7em;
+    height: 1.5em;
+  }
+
+  &__abvdesc {
+    background: black;
+    color: cornsilk;
+    min-width: 274px;
+    width: 60%;
+    min-height: 100px;
+    margin: 15px;
+    border-radius: inherit;
+    height: 100%;
+    float: right;
+  }
+
+  &__seeMore {
+    border-radius: 4px;
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    background: darkmagenta;
+  }
+
+  &__checkToggle {
+    border-radius: inherit;
+  }
+
+  &__wantToggle {
+    border-radius: inherit;
   }
 }

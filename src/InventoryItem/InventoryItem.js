@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import ApiContext from '../ApiContext';
 import config from '../config';
+import './InventoryItem.scss';
 
 // function InventoryItem(props) {
 //   const {
@@ -171,6 +172,7 @@ class InventoryItem extends Component {
           }}
         />
         <button
+          type="button"
           onClick={e =>
             this.deleteItem(e)
           }
