@@ -2,12 +2,14 @@ import React, {
   Component
 } from 'react';
 import config from '../config';
+import './Message.scss';
 
 class Message extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: this.props.message
+      message: this.props.message,
+      responded: false
     };
     //     id,
     // sender_name,
@@ -34,7 +36,7 @@ class Message extends Component {
       rsp_time
     };
     const options = {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'content-type':
           'application/json'
@@ -52,9 +54,22 @@ class Message extends Component {
     )
       .then(rsp => {
         // make sure it comes back with an ok response
+        if (!rsp.ok) {
+          throw new Error(
+            'something went wrong when you tried to respond to the message'
+          );
+        } else {
+          return rsp;
+        }
         // if it's ok then set the state for messages using context
       })
-      .then(rsp => {})
+      .then(rsp => {
+        this.setState({
+          ...this.state,
+          responded: true
+        });
+        console.log('responded');
+      })
       .catch(error => {});
   };
 
@@ -97,7 +112,7 @@ class Message extends Component {
             type="radio"
             value="maybe"
             name={option}
-            checked
+            defaultChecked
           />
           maybe{' '}
         </>
@@ -131,7 +146,7 @@ class Message extends Component {
         <em className="Message__timestamp">
           {send_time}
         </em>
-        <p className="Message_content">
+        <p className="Message__content">
           {content}
         </p>
         <form
@@ -140,6 +155,21 @@ class Message extends Component {
           onSubmit={e => {
             e.preventDefault();
             this.handleSendMessage();
+          }}
+          onChange={e => {
+            console.log(
+              e.target.name,
+              e.target.value,
+              this.state
+            );
+            this.setState({
+              ...this.state,
+              message: {
+                ...this.state.message,
+                [e.target.name]:
+                  e.target.value
+              }
+            });
           }}
         >
           {this.makeResponse()}

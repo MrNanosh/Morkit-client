@@ -1,0 +1,30 @@
+.Message {
+  &__header {
+    background: black;
+    color: burlywood;
+  }
+
+  &__item {
+    background: cyan;
+  }
+
+  &__timestamp {
+    background: magenta;
+  }
+
+  &__content {
+    background: red;
+  }
+
+  &__response {
+    background: green;
+  }
+
+  &__responseMessage {
+    background: rgb(168, 130, 130);
+  }
+
+  &__submit {
+    background: indianred;
+  }
+}
