@@ -68,6 +68,7 @@ class Message extends Component {
           ...this.state,
           responded: true
         });
+        this.context.deleteMessage();
         console.log('responded');
       })
       .catch(error => {});

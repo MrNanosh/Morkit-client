@@ -17,7 +17,13 @@ import MessageMain from '../MessageMain/MessageMain';
 class App extends Component {
   state = {
     inventory: { items: [], lists: [] },
-    messages: [],
+    messages: {
+      in: [],
+      out: {
+        inquiries: [],
+        responses: []
+      }
+    },
     forsale: []
   };
 
@@ -90,7 +96,9 @@ class App extends Component {
             (a, b) => b.id - a.id
           );
           this.setState({
-            messages,
+            messages: {
+              // in: messages.filter()
+            },
             inventory: {
               items: inventory.sort(
                 (a, b) => a.id - b.id
