@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "alias": "morkit",
+  "name": "morkit",
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/index.html" }
+  ]
+}
