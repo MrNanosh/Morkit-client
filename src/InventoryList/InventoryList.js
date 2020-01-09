@@ -136,9 +136,9 @@ class InventoryList extends Component {
       })
       .then(item => {
         this.context.addItem(item); //needs to be asynchronous with fetchfolders
-        this.props.history.push(
-          '/inventory'
-        );
+        // this.props.history.push(
+        //   '/inventory'
+        // );
         console.log(item);
       })
       .catch(e => console.log(e));

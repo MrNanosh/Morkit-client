@@ -44,7 +44,8 @@ class Message extends Component {
       body: JSON.stringify(bodyContent)
     };
 
-    const messageId = ''; //use for the patch request
+    const messageId = this.state.message
+      .id; //use for the patch request
     // fetch here to patch message with response
     fetch(
       config.API_ENDPOINT +

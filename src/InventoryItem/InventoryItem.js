@@ -159,7 +159,8 @@ class InventoryItem extends Component {
             );
           }}
         />
-        <input
+        <select
+          className="InventoryItem__is"
           className="InventoryItem__is"
           value={item_is}
           name="item_is"
@@ -170,7 +171,20 @@ class InventoryItem extends Component {
               e.target
             );
           }}
-        />
+        >
+          <option value="unavailable">
+            unavailable
+          </option>
+          <option value="selling">
+            selling
+          </option>
+          <option value="buying">
+            buying
+          </option>
+          <option value="fulfilled">
+            fulfilled
+          </option>
+        </select>
         <button
           type="button"
           onClick={e =>

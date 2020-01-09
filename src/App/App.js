@@ -253,32 +253,18 @@ class App extends Component {
   // renderNavRoutes() {
   //   return (
   //     <>
-  //       {['/', '/inventory/:itemId'].map(
-  //         path => (
-  //           <Route
-  //             exact
-  //             key={path}
-  //             path={path}
-  //             component={}
-  //           />
-  //         )
-  //       )}
-  //       <Route
-  //         path="/message/:messageId"
-  //         component={}
-  //       />
-  //       <Route
-  //         path="/message/"
-  //         component={}
-  //       />
-  //       <Route
-  //         path="/add-item"
-  //         component={}
-  //       />
-  //       <Route
-  //         path="/ask"
-  //         component={}
-  //       />
+  //       {[
+  //         '/',
+  //         '/inventory',
+  //         '/messages'
+  //       ].map(path => (
+  //         <Route
+  //           exact
+  //           key={path}
+  //           path={path}
+  //           component={}
+  //         />
+  //       ))}
   //     </>
   //   );
   // }
@@ -328,13 +314,13 @@ class App extends Component {
         value={value}
       >
         <div className="App">
-          {/* <nav className="App__nav">
-              {this.renderNavRoutes()}
-            </nav> */}
+          <nav className="App__nav">
+            {/* {this.renderNavRoutes()} */}
+          </nav>
           <header className="App__header">
             <h1>
               <Link to="/">Morkit</Link>{' '}
-              <FontAwesomeIcon icon="check-double" />
+              <FontAwesomeIcon icon="bread-slice" />
             </h1>
           </header>
           <main className="App__main">

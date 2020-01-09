@@ -9,13 +9,15 @@ import {
   faPlus,
   faChevronLeft,
   faTrashAlt,
-  faCheckDouble
+  faCheckDouble,
+  faBreadSlice
 } from '@fortawesome/free-solid-svg-icons';
 library.add(
   faPlus,
   faChevronLeft,
   faTrashAlt,
-  faCheckDouble
+  faCheckDouble,
+  faBreadSlice
 );
 
 ReactDOM.render(
