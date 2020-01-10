@@ -13,6 +13,7 @@ import ForSaleList from '../ForSaleList/ForSaleList';
 import InventoryMain from '../InventoryMain/InventoryMain';
 import MessageMain from '../MessageMain/MessageMain';
 import MainNav from '../MainNav/MainNav';
+import HelpText from '../HelpText/HelpText';
 // import ErrorBoundary from '../ErrorBoundary';
 
 class App extends Component {
@@ -314,14 +315,15 @@ class App extends Component {
         value={value}
       >
         <div className="App">
-          <nav className="App__nav">
-            {this.renderNavRoutes()}
-          </nav>
           <header className="App__header">
             <h1>
               <Link to="/">Morkit</Link>{' '}
               <FontAwesomeIcon icon="bread-slice" />
             </h1>
+            <HelpText></HelpText>
+            <nav className="App__nav">
+              {this.renderNavRoutes()}
+            </nav>
           </header>
           <main className="App__main">
             {this.renderMainRoutes()}

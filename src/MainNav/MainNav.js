@@ -2,12 +2,22 @@ import React, {
   Component
 } from 'react';
 import { NavLink } from 'react-router-dom';
+import './MainNav.scss';
 
 class MainNav extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+  }
+
   render() {
-    const key = 0;
-    return (
-      <div className="Nav">
+    let menu;
+    if (!this.state.open) {
+      menu = null;
+    } else {
+      menu = (
         <ul className="Nav__list">
           {[
             {
@@ -23,7 +33,7 @@ class MainNav extends Component {
               name: 'All Listings'
             }
           ].map(route => (
-            <li key={key + 1}>
+            <li key={route.destination}>
               <NavLink
                 className="Nav__link"
                 to={route.destination}
@@ -33,6 +43,21 @@ class MainNav extends Component {
             </li>
           ))}
         </ul>
+      );
+    }
+    return (
+      <div className="Nav">
+        <button
+          type="button"
+          onClick={e =>
+            this.setState({
+              open: !this.state.open
+            })
+          }
+        >
+          Menu
+        </button>
+        {menu}
       </div>
     );
   }

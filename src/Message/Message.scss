@@ -1,4 +1,11 @@
 .Message {
+  border-radius: 4px;
+  background: gray;
+  margin-right: 20%;
+  display: flex;
+  margin: 20px;
+
+  flex-direction: column;
   &__header {
     background: black;
     color: burlywood;
@@ -17,14 +24,34 @@
   }
 
   &__response {
-    background: green;
+    border-radius: inherit;
+    background: cyan;
+    min-width: 274px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
   }
 
   &__responseMessage {
-    background: rgb(168, 130, 130);
+    background: black;
+    color: whitesmoke;
+    border-radius: inherit;
+    box-shadow: 10px 5px 5px
+      rgb(243, 215, 104);
   }
 
   &__submit {
     background: indianred;
+    margin: 24px;
+  }
+
+  &__yes {
+    margin: 5px;
+  }
+  &__no {
+    margin: 5px;
+  }
+  &__maybe {
+    margin: 5px;
   }
 }

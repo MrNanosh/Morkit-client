@@ -17,9 +17,19 @@ checking availability only.
 
 ## Check out the LIVE version
 
+https://morkit.now.sh
+
 ## API documentation
 
 ### api/message
+
+#### GET api/message/
+
+#### GET api/message/:id
+
+#### POST api/message
+
+#### PATCH api/message
 
 ### api/forsale
 

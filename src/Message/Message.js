@@ -11,22 +11,6 @@ class Message extends Component {
       message: this.props.message,
       responded: false
     };
-    //     id,
-    // sender_name,
-    // sender_id,
-    // receiver_id,
-    // receiver_name,
-    // item_id,
-    // item_name,
-    // send_time,
-    // content,
-    // buy,
-    // check_available,
-    // rsp_buy,
-    // rsp_check,
-    // rsp_both,
-    // rsp_content
-    // rsp_time
   }
 
   handleSendMessage = () => {
@@ -69,7 +53,6 @@ class Message extends Component {
           ...this.state,
           responded: true
         });
-        console.log('responded');
       })
       .catch(error => {});
   };
@@ -97,25 +80,36 @@ class Message extends Component {
       ) : (
         <>
           {' '}
-          <input
-            type="radio"
-            value="yes"
-            name={option}
-          />
-          yes
-          <input
-            type="radio"
-            value="no"
-            name={option}
-          />
-          no
-          <input
-            type="radio"
-            value="maybe"
-            name={option}
-            defaultChecked
-          />
-          maybe{' '}
+          <div className="Message__yes">
+            <input
+              type="radio"
+              id="yes"
+              value="yes"
+              name={option}
+            />
+            <label for="yes">yes</label>
+          </div>
+          <div className="Message__no">
+            <input
+              id="no"
+              type="radio"
+              value="no"
+              name={option}
+            />
+            <label for="no">no</label>
+          </div>
+          <div className="Message__maybe">
+            <input
+              id="maybe"
+              type="radio"
+              value="maybe"
+              name={option}
+              defaultChecked
+            />
+            <label for="maybe">
+              maybe
+            </label>{' '}
+          </div>
         </>
       );
     });
@@ -158,11 +152,6 @@ class Message extends Component {
             this.handleSendMessage();
           }}
           onChange={e => {
-            console.log(
-              e.target.name,
-              e.target.value,
-              this.state
-            );
             this.setState({
               ...this.state,
               message: {
