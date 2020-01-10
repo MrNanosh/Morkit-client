@@ -12,6 +12,7 @@ import './App.css';
 import ForSaleList from '../ForSaleList/ForSaleList';
 import InventoryMain from '../InventoryMain/InventoryMain';
 import MessageMain from '../MessageMain/MessageMain';
+import MainNav from '../MainNav/MainNav';
 // import ErrorBoundary from '../ErrorBoundary';
 
 class App extends Component {
@@ -249,25 +250,24 @@ class App extends Component {
     });
   };
 
-  //TODO: nav routes
-  // renderNavRoutes() {
-  //   return (
-  //     <>
-  //       {[
-  //         '/',
-  //         '/inventory',
-  //         '/messages'
-  //       ].map(path => (
-  //         <Route
-  //           exact
-  //           key={path}
-  //           path={path}
-  //           component={}
-  //         />
-  //       ))}
-  //     </>
-  //   );
-  // }
+  renderNavRoutes() {
+    return (
+      <>
+        {[
+          '/',
+          '/inventory',
+          '/messages'
+        ].map(path => (
+          <Route
+            exact
+            key={path}
+            path={path}
+            component={MainNav}
+          />
+        ))}
+      </>
+    );
+  }
 
   renderMainRoutes() {
     return (
@@ -315,7 +315,7 @@ class App extends Component {
       >
         <div className="App">
           <nav className="App__nav">
-            {/* {this.renderNavRoutes()} */}
+            {this.renderNavRoutes()}
           </nav>
           <header className="App__header">
             <h1>
