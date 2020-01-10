@@ -156,9 +156,21 @@ Patches item_name, item_body, or item_is fields.
 
 ## Screenshots
 
+Showing the splash page with all of the items for all the users:
 ![image](https://user-images.githubusercontent.com/32424238/72172454-07590780-338a-11ea-808a-103f7b80dfb8.png)
 
+Inventory view: users can edit and add items and lists and these are posted and patched on the fly!
 ![image](https://user-images.githubusercontent.com/32424238/72182926-6b3afa80-33a1-11ea-8705-f8b0bf015a35.png)
+
+You can respond to a message in the messages view directly in the message.
+![image](https://user-images.githubusercontent.com/32424238/72183516-0d0f1700-33a3-11ea-8243-6de7e02844c8.png)
+
+Messages don't hide anything from you so you can make a quick decision instead of sifting through conversations
+![image](https://user-images.githubusercontent.com/32424238/72183658-5f503800-33a3-11ea-9a08-2a4413e8405f.png)
+
+You can write a message to another user from the item listing on the splash page directly in the post.
+All you have to do is click on the options that you want to have as actions for that item. All three combinations allowed!
+![image](https://user-images.githubusercontent.com/32424238/72183819-cb32a080-33a3-11ea-9ee9-dc5246df95ab.png)
 
 ## Technology
 
