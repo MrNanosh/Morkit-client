@@ -152,7 +152,51 @@ Posts a new inventory item
 Patches item_name, item_body, or item_is fields.
 `item_is` must be either: 'unavailable', 'selling', 'buying', 'fulfilled
 
+Patching the item_owner and item_list is also possible using the API but is unsupported by the
+interface at this point.
+
 #### DELETE api/inventory/:item_id
+
+`item_id` must be specified as a parameter. This will delete an Item. The current user must be
+the owner to allow a delete on an item.
+
+### api/list
+
+#### GET api/list
+
+gets all of the lists for a single user. Example of response body below.
+
+#### GET api/list/:list_id
+
+Gets a list for a specified `:list_id`
+
+```
+{
+        "id": 4,
+        "list_owner": 2,
+        "list_name": "inter-dimensional time cannons",
+        "owner_name": "Putin"
+}
+```
+
+#### POST api/list
+
+Posts a new list item
+
+```
+      {
+        list_name [required],
+      }
+```
+
+#### PATCH api/list/:list_id
+
+Patches list_name using `{"list_name": "a new name. Huzzah!"}`
+
+#### DELETE api/list/:list_id
+
+`list_id` must be specified as a parameter. This will delete a list. The current user must be
+the owner to allow a delete on a list.
 
 ## Screenshots
 
@@ -177,7 +221,3 @@ All you have to do is click on the options that you want to have as actions for 
 Uses React on the front end using Sass to keep styles organized with the BEM method. The backend uses
 a Postgresql relational database connected to a server through knex (knexjs.organized). The server uses
 express to route traffic.
-
-```
-
-```
