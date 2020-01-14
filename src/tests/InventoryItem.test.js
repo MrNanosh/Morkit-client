@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../App/App';
-import { BrowserRouter } from 'react-router-dom';
+import InventoryItem from '../InventoryItem/InventoryItem';
 
-describe('MessageMain', () => {
+describe('InventoryItem', () => {
   it('renders without crashing', () => {
     const div = document.createElement(
       'div'
     );
     ReactDOM.render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>,
+      <InventoryItem />,
       div
     );
   });

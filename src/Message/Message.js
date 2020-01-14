@@ -87,7 +87,9 @@ class Message extends Component {
               value="yes"
               name={option}
             />
-            <label for="yes">yes</label>
+            <label htmlFor="yes">
+              yes
+            </label>
           </div>
           <div className="Message__no">
             <input
@@ -96,7 +98,9 @@ class Message extends Component {
               value="no"
               name={option}
             />
-            <label for="no">no</label>
+            <label htmlFor="no">
+              no
+            </label>
           </div>
           <div className="Message__maybe">
             <input
@@ -106,7 +110,7 @@ class Message extends Component {
               name={option}
               defaultChecked
             />
-            <label for="maybe">
+            <label htmlFor="maybe">
               maybe
             </label>{' '}
           </div>
