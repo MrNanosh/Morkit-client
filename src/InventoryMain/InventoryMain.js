@@ -93,6 +93,7 @@ class InventoryMain extends Component {
         <input
           type="button"
           visibility="hidden"
+          style={{ background: 'none' }}
           className="InventoryMain__newListArea"
           ref={this.newList}
         ></input>
