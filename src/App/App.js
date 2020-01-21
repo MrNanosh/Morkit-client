@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import '../main.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ApiContext from '../ApiContext';
 import config from '../config';

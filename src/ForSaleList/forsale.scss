@@ -1,15 +1,15 @@
 .forsale {
-  background: gray;
+  background: none;
   display: flex;
   flex-direction: column;
   border-radius: 4px;
-  margin-right: 20%;
+  margin-right: auto;
+  margin-left: auto;
 
   &__item {
     border-radius: inherit;
     min-width: 274px;
-    background: rgb(68, 67, 67);
-    color: cornsilk;
+    background: var(--light-bg-color);
     list-style-type: none;
     margin-left: auto;
     margin-right: auto;
@@ -26,8 +26,11 @@
   &__name {
     border-radius: 4px 4px 0 0;
     display: block;
-    color: rgb(168, 148, 31);
-    background: black;
+    color: var(--light-contrast-color);
+    background: var(--main-bg-color);
+    font-weight: 300;
+    text-align: left;
+    padding: 4px;
     width: 100%;
     height: 100%;
     font-size: 1.5em;
@@ -35,48 +38,57 @@
 
   &__about {
     position: relative;
-    background-color: cyan;
+    background-color: var(
+      --main-bg-color
+    );
     height: 100%;
   }
 
   &__owner {
-    border-radius: inherit;
+    border-radius: 4px;
     color: orangered;
-    background: maroon;
+    font-weight: 300;
+    background: none;
     width: 7em;
     height: 1.5em;
-    box-shadow: 10px 5px 5px
-      rgb(243, 215, 104);
   }
 
   &__abvdesc {
-    background: black;
-    color: cornsilk;
+    background: none;
+    color: var(--dark-font-color);
+    border: 2px solid
+      var(--light-font-color);
     min-width: 274px;
     max-width: 274px;
-    height: 100px;
+    min-height: 100px;
     margin: 15px;
+    max-height: 100px;
     border-radius: 4px;
     float: right;
     text-align: left;
     padding: 6px;
-    box-shadow: 10px 5px 5px
-      rgb(243, 215, 104);
+    // box-shadow: 10px 5px 5px
+    //   rgb(243, 215, 104);
     text-overflow: ellipsis;
     overflow: hidden;
   }
 
   &__seeMore {
+    background: var(--light-bg-color);
+    color: var(--mid-contrast-color);
+    font-weight: 700;
     border-radius: 4px;
     position: absolute;
     right: 12px;
     bottom: 12px;
-    background: darkmagenta;
-    color: darkgray;
   }
 
   &__checkToggle {
+    color: var(--light-contrast-color);
+    font-weight: 600;
+    background: var(--light-font-color);
     border-radius: inherit;
+    // color: var(--dark-font-color);
     margin: 12px;
     position: absolute;
     right: 12px;
@@ -85,6 +97,9 @@
 
   &__wantToggle {
     border-radius: inherit;
+    color: var(--light-contrast-color);
+    font-weight: 600;
+    background: var(--light-font-color);
     margin: 12px;
     position: absolute;
     right: 62px;
@@ -97,15 +112,22 @@
     border: none;
     width: 100%;
     height: 100px;
+    background: var(--light-bg-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    color: var(--main-font-color);
   }
 
   &__messageBox {
+    background: var(--light-bg-color);
     position: relative;
     border-radius: inherit;
   }
 
   &__submit {
     position: absolute;
+    color: var(--dark-font-color);
     max-width: 60px;
     bottom: 5px;
     right: 5px;
@@ -148,8 +170,8 @@
       width: 220px;
       height: 60px;
       margin: 15px;
-      box-shadow: 10px 5px 5px
-        rgb(243, 215, 104);
+      // box-shadow: 10px 5px 5px
+      //   rgb(243, 215, 104);
     }
 
     &__about {
@@ -159,14 +181,14 @@
       border-radius: inherit;
       width: 7em;
       height: 1.5em;
-      box-shadow: 10px 5px 5px
-        rgb(243, 215, 104);
+      // box-shadow: 10px 5px 5px
+      //   rgb(243, 215, 104);
     }
 
     &__abvdesc {
       border-radius: inherit;
-      box-shadow: 10px 5px 5px
-        rgb(243, 215, 104);
+      // box-shadow: 10px 5px 5px
+      // rgb(243, 215, 104);
     }
 
     &__seeMore {

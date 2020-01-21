@@ -5,6 +5,7 @@ import ApiContext from '../ApiContext';
 import InventoryItem from '../InventoryItem/InventoryItem';
 import config from '../config';
 import './InventoryList.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 class InventoryList extends Component {
   constructor(props) {
     super(props);
@@ -189,11 +190,12 @@ class InventoryList extends Component {
             type="button"
             id={list_number}
             className="InventoryList__delete"
+            aria-label={'delete List'}
             onClick={e =>
               this.deleteList(e)
             }
           >
-            delete list
+            <FontAwesomeIcon icon="trash-alt" />
           </button>
         </div>
 

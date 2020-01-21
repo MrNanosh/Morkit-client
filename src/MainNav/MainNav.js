@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import { NavLink } from 'react-router-dom';
 import './MainNav.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class MainNav extends Component {
   constructor(props) {
@@ -14,23 +15,33 @@ class MainNav extends Component {
 
   render() {
     let menu;
+    let menuIcon;
     if (!this.state.open) {
       menu = null;
+      menuIcon = (
+        <FontAwesomeIcon icon="chevron-circle-right" />
+      );
     } else {
+      menuIcon = (
+        <FontAwesomeIcon icon="chevron-circle-down" />
+      );
       menu = (
         <ul className="Nav__list">
           {[
             {
               destination: '/inventory',
-              name: 'Your Inventory'
+              name: 'Your Inventory',
+              icon: 'boxes'
             },
             {
               destination: '/messages',
-              name: 'Messages'
+              name: 'Messages',
+              icon: 'inbox'
             },
             {
               destination: '/',
-              name: 'All Listings'
+              name: 'All Listings',
+              icon: 'list-alt'
             }
           ].map(route => (
             <li key={route.destination}>
@@ -38,6 +49,9 @@ class MainNav extends Component {
                 className="Nav__link"
                 to={route.destination}
               >
+                <FontAwesomeIcon
+                  icon={route.icon}
+                />
                 {route.name}
               </NavLink>
             </li>
@@ -55,7 +69,7 @@ class MainNav extends Component {
             })
           }
         >
-          Menu
+          {menuIcon}
         </button>
         {menu}
       </div>

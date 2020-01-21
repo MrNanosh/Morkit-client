@@ -1,48 +1,79 @@
 .Message {
+  min-width: 274px;
   border-radius: 4px;
-  background: gray;
+  background: var(--main-bg-color);
+  padding: 12px;
   margin-right: 20%;
   display: flex;
   margin: 20px;
 
   flex-direction: column;
   &__header {
-    background: black;
-    color: burlywood;
+    font-weight: 300;
+    font-size: 1.5rem;
+    background: none;
+    min-height: max-content;
+    color: var(--main-font-color);
+    border-radius: inherit;
+    text-align: left;
+    display: inline;
   }
 
   &__item {
-    background: cyan;
+    background: none;
+    color: var(--mid-contrast-color);
+    border-radius: inherit;
   }
 
   &__timestamp {
-    background: magenta;
+    background: none;
+    font-weight: 200;
+    font-size: 0.75rem;
+    color: var(--dark-font-color);
+    border-radius: inherit;
   }
 
   &__content {
-    background: red;
+    background: none;
+    color: var(--dark-font-color);
+    border: 2px solid
+      var(--light-font-color);
+
+    min-height: 60px;
+    text-align: left;
+    padding: 12px;
+    border-radius: inherit;
   }
 
   &__response {
+    font-size: 1rem;
     border-radius: inherit;
-    background: cyan;
-    min-width: 274px;
+    background: none;
     padding: 20px;
     display: flex;
     flex-direction: column;
   }
 
   &__responseMessage {
-    background: black;
-    color: whitesmoke;
+    background: var(--light-bg-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    color: var(--main-font-color);
     border-radius: inherit;
-    box-shadow: 10px 5px 5px
-      rgb(243, 215, 104);
   }
 
   &__submit {
-    background: indianred;
+    background: var(--light-bg-color);
+    border-radius: inherit;
+    color: var(--mid-contrast-color);
+    font-weight: 700;
     margin: 24px;
+  }
+
+  &__options {
+    color: var(--light-contrast-color);
+    text-align-last: left;
   }
 
   &__yes {
@@ -53,5 +84,75 @@
   }
   &__maybe {
     margin: 5px;
+  }
+
+  &__expand {
+    border-radius: inherit;
+    width: 65px;
+    margin: 24px;
+    color: var(--light-contrast-color);
+    font-weight: 500;
+    background: var(--light-font-color);
+  }
+}
+
+@media (min-width: 720px) {
+  .Message > * {
+    flex: 1 100%;
+  }
+  .Message {
+    position: relative;
+    flex-flow: row wrap;
+    // width: 60%;
+    // margin-left: auto;
+    // margin-right: auto;
+
+    &__header {
+      // margin-right: 0;
+      // width: 180px;
+      // height: 100%;
+    }
+
+    &__item {
+      flex: 1 0px;
+
+      // margin-right: 0;
+      // margin-left: 24px;
+      // width: 100%;
+      // text-align: left;
+    }
+
+    &__timestamp {
+      flex: 1 0px;
+    }
+
+    &__content {
+      flex: 3 0px;
+      height: 270px;
+      overflow-y: scroll;
+    }
+
+    &__response {
+    }
+
+    &__responseMessage {
+    }
+
+    &__submit {
+    }
+
+    &__options {
+    }
+
+    &__yes {
+    }
+    &__no {
+    }
+    &__maybe {
+    }
+
+    &__expand {
+      height: 64px;
+    }
   }
 }

@@ -8,6 +8,16 @@ import './InventoryMain.scss';
 
 class InventoryMain extends Component {
   static contextType = ApiContext;
+  constructor(props) {
+    super(props);
+    this.newList = React.createRef();
+    this.focusNewList = this.focusNewList.bind(
+      this
+    );
+  }
+  focusNewList() {
+    this.newList.current.focus();
+  }
 
   getLists = inventoryLists => {
     return inventoryLists.map(list => {
@@ -25,7 +35,6 @@ class InventoryMain extends Component {
   };
 
   newInventoryList = () => {
-    //TODO: a fetch request for post
     let newList = {
       list_name: 'please name your List'
     };
@@ -57,14 +66,6 @@ class InventoryMain extends Component {
         this.props.history.push(
           '/inventory'
         );
-        console.log(list);
-        // return (
-        //   <InventoryList
-        //     list_name={json.list_name}
-        //     list_number={json.id}
-        //     key={json.id}
-        //   />
-        // );
       })
       .catch(error =>
         console.log(
@@ -80,12 +81,21 @@ class InventoryMain extends Component {
           this.context.inventory.lists
         )}
         <button
-          onClick={
-            this.newInventoryList
-          }
+          className="InventoryMain__newListButton"
+          aria-label={'new list'}
+          onClick={e => {
+            this.focusNewList();
+            this.newInventoryList();
+          }}
         >
-          + New Inventory List +
+          <span>+</span>
         </button>
+        <input
+          type="button"
+          visibility="hidden"
+          className="InventoryMain__newListArea"
+          ref={this.newList}
+        ></input>
       </div>
     );
   }

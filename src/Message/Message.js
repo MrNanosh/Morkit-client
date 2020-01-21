@@ -3,13 +3,15 @@ import React, {
 } from 'react';
 import config from '../config';
 import './Message.scss';
+import { formatDistance } from 'date-fns';
 
 class Message extends Component {
   constructor(props) {
     super(props);
     this.state = {
       message: this.props.message,
-      responded: false
+      responded: false,
+      showForm: false
     };
   }
 
@@ -78,12 +80,14 @@ class Message extends Component {
       return !option ? (
         ''
       ) : (
-        <>
+        <div
+          className="Message__options"
+          key={option}
+        >
           {' '}
           <div className="Message__yes">
             <input
               type="radio"
-              id="yes"
               value="yes"
               name={option}
             />
@@ -93,7 +97,6 @@ class Message extends Component {
           </div>
           <div className="Message__no">
             <input
-              id="no"
               type="radio"
               value="no"
               name={option}
@@ -104,7 +107,6 @@ class Message extends Component {
           </div>
           <div className="Message__maybe">
             <input
-              id="maybe"
               type="radio"
               value="maybe"
               name={option}
@@ -114,40 +116,14 @@ class Message extends Component {
               maybe
             </label>{' '}
           </div>
-        </>
+        </div>
       );
     });
   };
 
-  render() {
-    const {
-      sender_name,
-      item_name,
-      send_time,
-      content,
-      buy,
-      check_available
-    } = this.props.message;
-
-    return (
-      <div className="MessageMain__message Message">
-        <h3 className="Message__header">
-          {sender_name} {'wants to '}
-          {buy && check_available
-            ? 'check availability with the intent to buy'
-            : buy
-            ? 'buy'
-            : 'check the availability of'}
-        </h3>
-        <strong className="Message__item">
-          {item_name}
-        </strong>
-        <em className="Message__timestamp">
-          {send_time}
-        </em>
-        <p className="Message__content">
-          {content}
-        </p>
+  renderForm = () => {
+    if (this.state.showForm) {
+      return (
         <form
           action="submit"
           className="Message__response"
@@ -180,6 +156,58 @@ class Message extends Component {
             className="Message__submit"
           />
         </form>
+      );
+    }
+  };
+
+  render() {
+    const {
+      sender_name,
+      item_name,
+      send_time,
+      content,
+      buy,
+      check_available
+    } = this.props.message;
+
+    return (
+      <div className="MessageMain__message Message">
+        <h3 className="Message__header">
+          {sender_name} {'wants to '}
+          {buy && check_available
+            ? 'check availability with the intent to buy'
+            : buy
+            ? 'buy'
+            : 'check the availability of'}
+        </h3>
+        <strong className="Message__item">
+          {item_name}
+        </strong>
+        <em className="Message__timestamp">
+          {formatDistance(
+            new Date(send_time),
+            new Date()
+          ) + ' ago'}
+        </em>
+        <p className="Message__content">
+          {content}
+        </p>
+        {this.renderForm()}
+        <button
+          className="Message__expand"
+          type="button"
+          onClick={e =>
+            this.setState({
+              ...this.state,
+              showForm: !this.state
+                .showForm
+            })
+          }
+        >
+          {this.state.showForm
+            ? 'close'
+            : 'respond'}
+        </button>
       </div>
     );
   }

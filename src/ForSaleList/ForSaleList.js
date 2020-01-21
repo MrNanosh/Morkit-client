@@ -12,7 +12,6 @@ function ForSaleList() {
     ApiContext
   );
 
-  console.log(context);
   return (
     <div className="forsale">
       {getItems(context.forsale)}

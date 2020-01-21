@@ -4,6 +4,7 @@ import React, {
 import ApiContext from '../ApiContext';
 import config from '../config';
 import './InventoryItem.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 class InventoryItem extends Component {
   constructor(props) {
     super(props);
@@ -126,7 +127,6 @@ class InventoryItem extends Component {
         />
         <select
           className="InventoryItem__is"
-          className="InventoryItem__is"
           value={item_is}
           name="item_is"
           type="text"
@@ -151,13 +151,15 @@ class InventoryItem extends Component {
           </option>
         </select>
         <button
+          className="InventoryItem__delete"
+          aria-label={'delete item'}
           type="button"
           onClick={e =>
             this.deleteItem(e)
           }
           id={id}
         >
-          delete item
+          <FontAwesomeIcon icon="trash-alt" />
         </button>
       </form>
     );

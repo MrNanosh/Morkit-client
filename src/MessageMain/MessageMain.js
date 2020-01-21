@@ -10,7 +10,7 @@ class MessageMain extends Component {
     return messages.map(message => {
       return (
         <Message
-          key={message.id}
+          key={`msg${message.id}`}
           message={message}
         ></Message>
       );

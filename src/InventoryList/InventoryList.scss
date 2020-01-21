@@ -3,20 +3,57 @@
   flex-direction: column;
   min-width: 274px;
   border-radius: 4px;
-  padding-left: 12px;
+  padding: 12px;
   scroll-snap-align: start;
+  background: var(--main-bg-color);
+  margin: 12px;
+  height: max-content;
+
   &__name {
-    background: darkgray;
+    font-weight: 300;
+    padding: 4px;
+    font-size: 1.5rem;
+    border-radius: inherit;
+    background: none;
+    min-height: max-content;
+    color: var(--main-font-color);
+    border-radius: inherit;
+    text-align: left;
+    display: inline;
   }
+
   &__nameform {
+    border-radius: inherit;
   }
+
   &__nameInput {
-    background: darkgray;
-    color: cornsilk;
-    border-radius: 8px;
+    background: var(--light-bg-color);
+    color: var(--light-contrast-color);
+    font-size: 1.5rem;
+    border: 2px solid
+      var(--light-font-color);
+    border-radius: inherit;
+    width: 100%;
   }
+
   &__delete {
+    font-weight: 700;
+    border-radius: 50%;
+    font-size: 30px;
+    width: 45px;
+    height: 45px;
+    margin: 24px;
+    color: var(--light-contrast-color);
+    font-weight: 500;
+    background: var(--light-font-color);
   }
+
   &__newItemButton {
+    border-radius: inherit;
+    font-weight: 700;
+    margin: 24px;
+    color: var(--light-contrast-color);
+    font-weight: 500;
+    background: var(--light-font-color);
   }
 }

@@ -1,4 +1,5 @@
 import giveAModalTo from '../HOCS/hasModal';
+import ReactDOM from 'react-dom';
 import React, {
   Component
 } from 'react';
@@ -127,8 +128,8 @@ class ForsaleItem extends Component {
             }
             style={{
               background: want
-                ? 'yellow'
-                : 'gray'
+                ? 'rgb(161, 145, 52)'
+                : ''
             }}
           >
             {'available?'}
@@ -144,8 +145,8 @@ class ForsaleItem extends Component {
             }
             style={{
               background: check
-                ? 'yellow'
-                : 'gray'
+                ? 'rgb(161, 145, 52)'
+                : ''
             }}
           >
             {'Want!'}
@@ -174,7 +175,7 @@ class ForsaleItem extends Component {
           <p
             className="forsale__abvdesc"
             style={{
-              height: more
+              maxHeight: more
                 ? 'max-content'
                 : ''
             }}
@@ -191,7 +192,6 @@ class ForsaleItem extends Component {
                 ...this.state,
                 more: !this.state.more
               });
-              console.log(more);
             }}
           >
             {more

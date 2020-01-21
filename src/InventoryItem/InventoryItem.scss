@@ -1,5 +1,39 @@
 .InventoryItem {
-  background: whitesmoke;
+  background: var(--light-bg-color);
   margin: 12px;
   padding: 12px;
+  border-radius: 4px;
+
+  & > * {
+    color: var(--dark-contrast-color);
+    font-size: 1.2rem;
+    font-weight: 200;
+  }
+
+  &__name {
+    border-radius: inherit;
+    background: var(--main-bg-color);
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  &__body {
+    border-radius: inherit;
+    background: var(--main-bg-color);
+    width: 100%;
+    margin-top: 12px;
+    height: 4rem;
+  }
+
+  &__delete {
+    font-weight: 700;
+    margin: 24px;
+    color: var(--light-contrast-color);
+    font-weight: 500;
+    background: var(--light-font-color);
+    border-radius: 50%;
+    font-size: 30px;
+    width: 45px;
+    height: 45px;
+  }
 }
