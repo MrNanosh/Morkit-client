@@ -1,11 +1,28 @@
 :root {
-  --main-bg-color: #eecab9;
-  --light-bg-color: #ddcab8;
-  --light-contrast-color: #d79148;
+  --main-bg-color: #fcf6ee;
+  --light-bg-color: #f1e2c8;
+  --light-contrast-color: #5b4d42;
   --mid-contrast-color: #c5a29d;
-  --dark-contrast-color: #b66620;
-  --light-font-color: #ddb991;
-  --main-font-color: #d79148;
-  --dark-font-color: #9e5916;
+  --dark-contrast-color: #250404;
+  --light-font-color: #fed1d1;
+  --main-font-color: #2f2a25;
+  --dark-font-color: #1a2822;
+}
+button svg {
+  pointer-events: none;
+}
+button {
+  border: 0;
+}
+
+textarea {
+  border: 0;
+}
+
+input[type='text'] {
+  border: 0;
+}
+
+body {
   background: var(--mid-contrast-color);
 }
