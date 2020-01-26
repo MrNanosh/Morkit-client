@@ -195,7 +195,13 @@ class InventoryList extends Component {
               this.deleteList(e)
             }
           >
-            <FontAwesomeIcon icon="trash-alt" />
+            <span className="InventoryList__delete__hover">
+              delete list{' '}
+            </span>
+            <FontAwesomeIcon
+              className="InventoryList__delete__icon"
+              icon="trash-alt"
+            />
           </button>
         </div>
 

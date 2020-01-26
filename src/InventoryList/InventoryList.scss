@@ -20,6 +20,8 @@
     border-radius: inherit;
     text-align: left;
     display: inline;
+    display: flex;
+    flex-direction: column;
   }
 
   &__nameform {
@@ -27,7 +29,7 @@
   }
 
   &__nameInput {
-    background: var(--light-bg-color);
+    background: var(--input-bg-color);
     color: var(--light-contrast-color);
     font-size: 1.5rem;
     border: 2px solid
@@ -38,7 +40,6 @@
 
   &__delete {
     font-weight: 700;
-    border-radius: 50%;
     font-size: 30px;
     width: 45px;
     height: 45px;
@@ -46,6 +47,56 @@
     color: var(--light-contrast-color);
     font-weight: 500;
     background: var(--light-font-color);
+    align-self: flex-end;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    border-radius: 22.5px;
+    // transition: width 2s ease 1s;
+    transition-property: width;
+    transition-duration: 0.6s;
+    transition-timing-function: ease;
+    transition-delay: 0.3s;
+    position: relative;
+    &__icon {
+      position: absolute;
+      right: 9px;
+      bottom: 7px;
+    }
+    &__hover {
+      font-size: 1rem;
+      opacity: 0;
+
+      visibility: hidden;
+
+      transition: opacity 0.8s ease-in
+        0.9s;
+      transition: padding-left 0.8s
+        linear 0.9s;
+    }
+  }
+
+  @keyframes appear {
+    0% {
+      transform: scale(0);
+      transform: translate(-20px);
+    }
+    100% {
+      transform: scale(1);
+      transform: translate(5px);
+    }
+  }
+
+  &__delete:hover {
+    width: 170px;
+    & .InventoryList__delete__hover {
+      transition: opacity 0.8s ease-out
+        0.9s;
+      animation: appear 1.2s linear 0.3s;
+      opacity: 1;
+      padding-left: 8px;
+      visibility: visible;
+    }
   }
 
   &__newItemButton {
