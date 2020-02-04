@@ -1,3 +1,4 @@
+import handleError from '../handleError';
 import React, {
   Component
 } from 'react';
@@ -8,7 +9,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 class InventoryItem extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...this.props.item };
+    this.state = {
+      ...this.props.item,
+      hasError: false,
+      error: null
+    };
   }
   static contextType = ApiContext;
 
@@ -44,13 +49,9 @@ class InventoryItem extends Component {
         this.context.deleteItem(
           item_id
         );
-        console.log(
-          `deleted item ${item_id}`,
-          this.context.inventory.items
-        );
       })
       .catch(error => {
-        console.log(error);
+        this.setState({});
       });
   };
 
@@ -84,8 +85,11 @@ class InventoryItem extends Component {
           itemFields
         );
       })
-      .catch(error => {
-        console.log(error);
+      .catch(rsp => {
+        this.setState({
+          error: rsp.error,
+          hasError: true
+        });
       });
   };
 
@@ -97,10 +101,18 @@ class InventoryItem extends Component {
       item_owner,
       owner_name,
       item_is,
-      item_list
+      item_list,
+      error,
+      hasError
     } = this.state;
+
+    let errorMessage = handleError(
+      hasError,
+      error
+    );
     return (
       <form className="InventoryItem InventoryList__item">
+        {errorMessage}
         <input
           className="InventoryItem__name"
           name="item_name"

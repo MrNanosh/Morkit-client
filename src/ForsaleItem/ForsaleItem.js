@@ -1,3 +1,4 @@
+import handleError from '../handleError';
 import giveAModalTo from '../HOCS/hasModal';
 import ReactDOM from 'react-dom';
 import React, {
@@ -13,7 +14,9 @@ class ForsaleItem extends Component {
       check: false,
       outgoing: '',
       sent: false,
-      more: false
+      more: false,
+      error: null,
+      hasError: false
     };
   }
   //needs to pop up a text box or modal to record an outgoing message
@@ -58,7 +61,12 @@ class ForsaleItem extends Component {
           sent: true
         });
       })
-      .catch(err => console.log(err));
+      .catch(rsp => {
+        this.setState({
+          error: rsp.error,
+          hasError: true
+        });
+      });
   };
   render() {
     const {
@@ -73,6 +81,8 @@ class ForsaleItem extends Component {
       check,
       outgoing,
       sent,
+      error,
+      hasError,
       more
     } = this.state;
     if (!check && !want) {
@@ -111,8 +121,14 @@ class ForsaleItem extends Component {
         </form>
       );
     }
+
+    let errorMessage = handleError(
+      hasError,
+      error
+    );
     return (
       <div className="forsale__item">
+        {errorMessage}
         <div className="forsale__actionsAndName">
           <div className="forsale__name">
             {item_name}

@@ -1,3 +1,4 @@
+import handleError from '../handleError';
 import React, {
   Component
 } from 'react';
@@ -14,6 +15,10 @@ class InventoryMain extends Component {
     this.focusNewList = this.focusNewList.bind(
       this
     );
+    this.state = {
+      hasError: false,
+      error: null
+    };
   }
   focusNewList() {
     this.newList.current.focus();
@@ -67,16 +72,26 @@ class InventoryMain extends Component {
           '/inventory'
         );
       })
-      .catch(error =>
-        console.log(
-          'something went wrong'
-        )
-      );
+      .catch(rsp => {
+        this.setState({
+          error: rsp.error,
+          hasError: true
+        });
+      });
   };
 
   render() {
+    const {
+      error,
+      hasError
+    } = this.state;
+    let errorMessage = handleError(
+      hasError,
+      error
+    );
     return (
       <div className="InventoryMain">
+        {errorMessage}
         {this.getLists(
           this.context.inventory.lists
         )}

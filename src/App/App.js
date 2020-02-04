@@ -159,7 +159,6 @@ class App extends Component {
         )
       }
     });
-    console.log(this.state);
   };
 
   handleDeleteList = listId => {
@@ -175,10 +174,6 @@ class App extends Component {
   };
 
   handleDeleteMessage = messageId => {
-    console.log(
-      this.state.messages[0].id,
-      messageId
-    );
     this.setState({
       notes: this.state.messages.filter(
         message =>
@@ -204,7 +199,6 @@ class App extends Component {
       ...updatedItem,
       ...field
     };
-    console.log(updatedItem);
     let listOfItems = this.state
       .inventory.items;
     listOfItems.splice(

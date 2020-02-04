@@ -9,7 +9,19 @@ class Message extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: this.props.message,
+      message: {
+        ...this.props.message,
+        [this.props.message.buy &&
+        !this.props.message
+          .check_available
+          ? 'rsp_buy'
+          : this.props.message
+              .check_available &&
+            !this.props.message.buy
+          ? 'rsp_check'
+          : 'rsp_both']: 'maybe'
+      },
+
       responded: false,
       showForm: false
     };

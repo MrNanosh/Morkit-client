@@ -1,3 +1,4 @@
+import handleError from '../handleError';
 import React, {
   Component
 } from 'react';
@@ -9,7 +10,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 class InventoryList extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...this.props };
+    this.state = {
+      ...this.props,
+      error: null,
+      hasError: false
+    };
   }
   static contextType = ApiContext;
 
@@ -62,8 +67,11 @@ class InventoryList extends Component {
           listFields
         );
       })
-      .catch(error => {
-        console.log(error);
+      .catch(rsp => {
+        this.setState({
+          error: rsp.error,
+          hasError: true
+        });
       });
   };
 
@@ -100,13 +108,15 @@ class InventoryList extends Component {
           list_id
         );
       })
-      .catch(error => {
-        console.log(error);
+      .catch(rsp => {
+        this.setState({
+          error: rsp.error,
+          hasError: true
+        });
       });
   };
 
   newInventoryItem = () => {
-    //TODO: a fetch request for post
     let newItem = {
       item_name:
         'please name your item',
@@ -137,20 +147,13 @@ class InventoryList extends Component {
       })
       .then(item => {
         this.context.addItem(item); //needs to be asynchronous with fetchfolders
-        // this.props.history.push(
-        //   '/inventory'
-        // );
-        console.log(item);
       })
-      .catch(e => console.log(e));
-
-    // console.log(this.context);
-    // return (
-    //   <InventoryItem
-    //     item={newItem}
-    //     key={newItem.id}
-    //   />
-    // );
+      .catch(rsp => {
+        this.setState({
+          error: rsp.error,
+          hasError: true
+        });
+      });
   };
 
   render() {
@@ -159,11 +162,18 @@ class InventoryList extends Component {
 
     const {
       list_number,
-      list_name
+      list_name,
+      hasError,
+      error
     } = this.state;
 
+    let errorMessage = handleError(
+      hasError,
+      error
+    );
     return (
       <div className="InventoryList">
+        {errorMessage}
         <div className="InventoryList__name">
           <form
             className="InventoryList__nameform"
