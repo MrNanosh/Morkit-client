@@ -1,5 +1,5 @@
 import handleError from '../handleError';
-import giveAModalTo from '../HOCS/hasModal';
+import giveAModalTo from '../HOCS/HasModal';
 import ReactDOM from 'react-dom';
 import React, {
   Component

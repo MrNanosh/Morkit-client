@@ -33,16 +33,24 @@
     border-radius: inherit;
   }
 
-  &__content {
+  &__content,
+  &__content__response {
     background: none;
     color: var(--dark-font-color);
     border: 2px solid
       var(--light-font-color);
 
     min-height: 60px;
+    height: max-content;
+    word-break: break-all;
+    display: block;
+    hyphens: auto;
     text-align: left;
     padding: 12px;
     border-radius: inherit;
+    &__response {
+      border-color: rgb(223, 188, 85);
+    }
   }
 
   &__response {
@@ -60,6 +68,7 @@
     font-weight: 500;
     border: none;
     color: var(--main-font-color);
+    padding: 20px;
     border-radius: inherit;
   }
 
@@ -76,12 +85,8 @@
     text-align-last: left;
   }
 
-  &__yes {
-    margin: 5px;
-  }
-  &__no {
-    margin: 5px;
-  }
+  &__yes,
+  &__no,
   &__maybe {
     margin: 5px;
   }
@@ -103,23 +108,12 @@
   .Message {
     position: relative;
     flex-flow: row wrap;
-    // width: 60%;
-    // margin-left: auto;
-    // margin-right: auto;
-
+    padding: 3vh;
     &__header {
-      // margin-right: 0;
-      // width: 180px;
-      // height: 100%;
     }
 
     &__item {
       flex: 1 0px;
-
-      // margin-right: 0;
-      // margin-left: 24px;
-      // width: 100%;
-      // text-align: left;
     }
 
     &__timestamp {
@@ -128,8 +122,12 @@
 
     &__content {
       flex: 3 0px;
-      height: 270px;
+      min-height: 140px;
       overflow-y: scroll;
+      &__response {
+        margin-right: 38%;
+        min-height: 140px;
+      }
     }
 
     &__response {
@@ -144,15 +142,15 @@
     &__options {
     }
 
+    &__no,
+    &__maybe,
     &__yes {
-    }
-    &__no {
-    }
-    &__maybe {
+      margin: 2.4vh;
     }
 
     &__expand {
       height: 64px;
+      font-size: 1.4rem;
     }
   }
 }

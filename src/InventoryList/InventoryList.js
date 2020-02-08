@@ -138,9 +138,7 @@ class InventoryList extends Component {
     )
       .then(rsp => {
         if (!rsp.ok) {
-          throw new Error(
-            'something went wrong'
-          );
+          throw new Error(rsp.json());
         } else {
           return rsp.json();
         }

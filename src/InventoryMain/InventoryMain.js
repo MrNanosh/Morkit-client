@@ -31,9 +31,6 @@ class InventoryMain extends Component {
           key={list.id}
           list_number={list.id}
           list_name={list.list_name}
-          // show_delete={this.setState({
-          //   ...this.state
-          // })}
         ></InventoryList>
       );
     });
@@ -108,7 +105,10 @@ class InventoryMain extends Component {
         <input
           type="button"
           visibility="hidden"
-          style={{ background: 'none' }}
+          style={{
+            background: 'none',
+            border: 'none'
+          }}
           className="InventoryMain__newListArea"
           ref={this.newList}
         ></input>

@@ -4,17 +4,21 @@
   position: fixed;
   top: 10px;
   & * {
-    font-size: 40px;
+    font-size: 2.4rem;
     border-radius: 40px;
     color: var(--dark-font-color);
     text-align: left;
     text-decoration: none;
     z-index: 2;
-    background: var(--light-font-color);
   }
   &__list {
+    background: var(--light-font-color);
     list-style-type: none;
     position: relative;
-    left: -30px;
+    left: 0px;
+    padding: 8px;
+    & li {
+      margin: 4px;
+    }
   }
 }

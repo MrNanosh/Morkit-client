@@ -182,6 +182,34 @@ class App extends Component {
     });
   };
 
+  handleUpdateMessage = (
+    messageId,
+    fieldsToUpdate
+  ) => {
+    const messageIndex = this.state.messages.findIndex(
+      item =>
+        item.id === Number(messageId)
+    );
+    let updatedMessage = this.state
+      .messages[messageIndex];
+    updatedMessage = {
+      ...updatedMessage,
+      ...fieldsToUpdate
+    };
+    let listOfMessages = this.state
+      .messages;
+    listOfMessages.splice(
+      messageIndex,
+      1,
+      updatedMessage
+    );
+
+    this.setState({
+      ...this.state,
+      messages: listOfMessages
+    });
+  };
+
   handleUpdateItem = (
     itemId,
     fieldsToUpdate
@@ -303,7 +331,9 @@ class App extends Component {
       addItem: this.handleAddItem,
       addList: this.handleAddList,
       deleteItem: this.handleDeleteItem,
-      deleteList: this.handleDeleteList
+      deleteList: this.handleDeleteList,
+      updateMessage: this
+        .handleUpdateMessage
     };
     return (
       <ApiContext.Provider

@@ -1,6 +1,7 @@
 import React, {
   Component
 } from 'react';
+import './HelptText.scss';
 
 class HelpText extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class HelpText extends Component {
     let display;
     if (this.state.needhelp) {
       display = (
-        <div className="HelpText_text">
+        <div className="HelpText__text">
           <p>
             Hi There! Morkit helps you
             sell and buy your stuff.

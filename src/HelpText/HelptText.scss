@@ -1,0 +1,14 @@
+.HelpText {
+  position: relative;
+
+  &__text {
+    z-index: 2;
+    position: absolute;
+    background: var(
+      --mid-contrast-color
+    );
+    border-bottom: 4px solid
+      var(--light-font-color);
+    padding: 4px;
+  }
+}

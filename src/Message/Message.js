@@ -4,6 +4,7 @@ import React, {
 import config from '../config';
 import './Message.scss';
 import { formatDistance } from 'date-fns';
+import ApiContext from '../ApiContext';
 
 class Message extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class Message extends Component {
       showForm: false
     };
   }
+  static contextType = ApiContext;
 
   handleSendMessage = () => {
     const rsp_time = new Date();
@@ -62,7 +64,23 @@ class Message extends Component {
         }
         // if it's ok then set the state for messages using context
       })
-      .then(rsp => {
+      .then(async rsp => {
+        let patchedMessage = await fetch(
+          rsp.url
+        );
+        if (!patchedMessage.ok) {
+          throw new Error(
+            'something went wrong when you tried to respond to the message'
+          );
+        } else {
+          return patchedMessage.json();
+        }
+      })
+      .then(message => {
+        this.context.updateMessage(
+          message.id,
+          message
+        );
         this.setState({
           ...this.state,
           responded: true
@@ -160,11 +178,20 @@ class Message extends Component {
             id="rsp_content"
             cols="30"
             rows="10"
+            placeholder={
+              this.state.responded
+                ? 'Sent! Change your response?'
+                : 'write/change your response'
+            }
             className="Message__responseMessage"
           ></textarea>
           <input
             type="submit"
-            value="send message"
+            value={
+              this.state.responded
+                ? 'edit & send again?'
+                : 'send message'
+            }
             className="Message__submit"
           />
         </form>
@@ -179,8 +206,40 @@ class Message extends Component {
       send_time,
       content,
       buy,
-      check_available
+      check_available,
+      rsp_content,
+      rsp_check,
+      rsp_both,
+      rsp_time,
+      rsp_buy
     } = this.props.message;
+    let response;
+    if (
+      rsp_buy ||
+      rsp_check ||
+      rsp_both
+    ) {
+      response = (
+        <p className="Message__content__response">
+          <strong>
+            {rsp_buy ||
+              rsp_check ||
+              rsp_both}
+            ! -
+          </strong>{' '}
+          <em className="Message__timestamp">
+            {formatDistance(
+              new Date(rsp_time),
+              new Date()
+            ) + ' ago'}
+          </em>
+          <br />
+          {rsp_content}
+        </p>
+      );
+    } else {
+      response = null;
+    }
 
     return (
       <div className="MessageMain__message Message">
@@ -204,6 +263,7 @@ class Message extends Component {
         <p className="Message__content">
           {content}
         </p>
+        {response}
         {this.renderForm()}
         <button
           className="Message__expand"

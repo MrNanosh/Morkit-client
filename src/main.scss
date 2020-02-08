@@ -14,7 +14,8 @@ body {
   font-family: Helvetica, Arial,
     sans-serif;
 }
-button svg {
+button svg,
+button span {
   pointer-events: none;
 }
 

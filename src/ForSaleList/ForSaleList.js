@@ -4,7 +4,7 @@ import React, {
 import ApiContext from '../ApiContext';
 import './forsale.scss';
 import ForsaleItem from '../ForsaleItem/ForsaleItem';
-import giveAModalTo from '../HOCS/hasModal';
+import giveAModalTo from '../HOCS/HasModal';
 import ForsaleItemWithModal from '../ForsaleItem/ForsaleItem';
 
 function ForSaleList() {
